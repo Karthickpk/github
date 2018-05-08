@@ -4,11 +4,10 @@
 	<title>Spring 3 MVC Series - Contact Manager</title>
 </head>
 <body>
-<h1>Spring MVC Hello World Example</h1>
+<h1>Spring MVC Tiles Example</h1>
 
 	<h2>${msg}</h2>
 	
-<h2>Contact Manager</h2>
 <%-- <form:form method="post" action="addContact.html">
 
 	<table>

@@ -11,7 +11,7 @@
 
 	<!-- <import resource="classpath:WEB-INF/spring-common.xml"/> -->
 
-	<bean name="/welcome.htm" class="com.mkyong.web.controller.HelloController" />
+	<bean name="/welcome.htm" class="com.spring.xml.tiles.web.controller.HelloController" />
 
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
