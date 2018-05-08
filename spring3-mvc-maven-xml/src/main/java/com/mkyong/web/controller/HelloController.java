@@ -11,8 +11,8 @@ public class HelloController extends AbstractController {
 	@Override
 	protected ModelAndView handleRequestInternal(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
 		// TODO Auto-generated method stub
-		ModelAndView model = new ModelAndView("hello");
-		model.addObject("msg", "Spring 3 MVC Hello World");
+		ModelAndView model = new ModelAndView("contact");
+		model.addObject("command","Spring 3 MVC Hello World");
 
 		return model;
 	}
