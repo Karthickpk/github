@@ -10,8 +10,17 @@
         http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
 	<!-- <import resource="classpath:WEB-INF/spring-common.xml"/> -->
+	
+	<bean 
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>/WEB-INF/constants.properties</value>
+		</property>
+	</bean>
 
-	<bean name="/welcome.htm" class="com.spring.xml.tiles.web.controller.HelloController" />
+	<bean name="/welcome.htm" class="com.spring.xml.tiles.web.controller.HelloController" >
+	<property name="msg" value="${msg}" />
+	</bean>
 
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver">

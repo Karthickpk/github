@@ -6,7 +6,7 @@
 <body>
 <h1>Spring MVC Tiles Example</h1>
 
-	<h2>${msg}</h2>
+	<h2>${command}</h2>
 	
 <%-- <form:form method="post" action="addContact.html">
 
