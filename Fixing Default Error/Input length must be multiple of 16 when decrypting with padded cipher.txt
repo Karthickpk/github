@@ -1,0 +1,104 @@
+Exception in thread main javax.crypto.IllegalBlockSizeException Input length must be multiple of 16 when decrypting with padded cipher
+
+
+Generally this exception happen while having some encrypted character which where used for URL parameter encryption.
+
+Error:
+
+Exception in thread "main" javax.crypto.IllegalBlockSizeException: Input length must be multiple of 16 when decrypting with padded cipher
+	at com.sun.crypto.provider.CipherCore.doFinal(CipherCore.java:750)
+	at com.sun.crypto.provider.CipherCore.doFinal(CipherCore.java:676)
+	at com.sun.crypto.provider.AESCipher.engineDoFinal(AESCipher.java:313)
+	at javax.crypto.Cipher.doFinal(Cipher.java:2087)
+	at com.encrypt.classes.AESEncryption.doDecypt(AESEncryption.java:61)
+	at com.encrypt.classes.AESEncryption.main(AESEncryption.java:30)
+
+Solution :
+Use below line of statements. Follow example below for more detail.
+
+Not Use :
+ 	byte[] decryptedPassword = cipher.doFinal(decodeStr.getBytes());
+
+Use:
+	byte[] base64decodedTokenArr = Base64.decodeBase64(decodeStr.getBytes());
+	byte[] decryptedPassword = cipher.doFinal(base64decodedTokenArr);
+
+
+Example:
+
+package com.encrypt.classes;
+
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidKeyException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.spec.SecretKeySpec;
+import javax.xml.bind.DatatypeConverter;
+
+import org.apache.commons.codec.binary.Base64;
+
+public class AESEncryption {
+
+	private static String key_str = "abc457522dfgh";
+
+	private static String msg = "Hello Java hacker !!";
+
+	public static void main(String[] args) throws NoSuchAlgorithmException, InvalidKeyException, NoSuchPaddingException,
+			IllegalBlockSizeException, BadPaddingException, UnsupportedEncodingException {
+
+		AESEncryption aesEnc = new AESEncryption();
+		String enc_value = aesEnc.doEncrypt(); 
+		System.out.println(enc_value);
+		System.out.println(aesEnc.doDecypt(enc_value));
+	}
+
+	public static byte[] getKey() throws UnsupportedEncodingException, NoSuchAlgorithmException {
+
+		byte[] key = key_str.getBytes("UTF-8");
+		MessageDigest sha = MessageDigest.getInstance("SHA-1");
+		key = sha.digest(key);
+		key = Arrays.copyOf(key, 16);
+		return key;
+	}
+
+	public String doEncrypt() throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException,
+			IllegalBlockSizeException, BadPaddingException, UnsupportedEncodingException {
+		SecretKeySpec secretKeySpec = new SecretKeySpec(getKey(), "AES");
+
+		Cipher cipher = Cipher.getInstance("AES");
+		cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
+		
+		byte[] encrypted = cipher.doFinal(msg.getBytes());
+
+		return bytesToHex(encrypted);
+	}
+
+	public String doDecypt(String value) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException,
+			IllegalBlockSizeException, BadPaddingException, UnsupportedEncodingException {
+		SecretKeySpec secretKeySpec = new SecretKeySpec(getKey(), "AES");
+
+		Cipher cipher = Cipher.getInstance("AES");
+		cipher.init(Cipher.DECRYPT_MODE, secretKeySpec);
+		byte[] base64decodedTokenArr = Base64.decodeBase64(value.getBytes());
+		byte[] encrypted = cipher.doFinal(base64decodedTokenArr);
+
+		return new String(encrypted);
+
+	}
+
+	private static String bytesToHex(byte[] hash) {
+		return DatatypeConverter.printBase64Binary(hash);
+	}
+
+}
+
+Output:
+
+eCkzM4jmhjXW+jYdMtMAwepXWFjKm/IcvwKYQf2NSPs=
+Hello Java hacker !!
