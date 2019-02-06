@@ -1,0 +1,41 @@
+1.	Different between Static import & normal import
+2.	Explain HashMap internal implementation.
+3.	How to avoid collision in HashMap.
+4.	Different between List & List Iterator
+5.	Different between enum & enumeration
+6.	What is blocking queue in java
+7.	Different between Fail fast & Fail safe.
+8.	How to find duplicate elements in array
+9.	How to find repeated character in string
+10.	Different between thread & wait (), notify (), notifyAll ()
+11.	Different between Arrays.sort () & Collections.sort (), what are the algorithm used in both.
+12.	Different between war, ear & jar.
+13.	Different between RowMapper & ResultSetExtractor
+14.	What is dependency injection?
+15.	Different between Thread & Runnable. How both are used in class?
+16.	Why wait (), notify (), notifyAll () resides the Object.
+17.	How to stop the thread.
+18.	Different between volatile & transient keyword
+19.	Different between synchronization & serialization
+20.	What is marker interface?
+21.	Different between java version 5, 6, 7 & 8
+22.	What is Composition?
+23.	What is aggregation?
+24.	What is association?
+25.	How many way object are created in java?
+26.	Different between JdbcDaoSupport & JdbcTemplate?
+27.	What is JVM architecture? & how its work?
+28.	What is Bytebuffer?
+29.	Different between static block & static method?
+30.	Different between Exception & Error?
+31. what is polymorphism? with example
+32.what is encapsulation?
+33.what is mean homogeneous and heterogeneous in java?
+34. difference between access modifier and access modifier?
+35. how to create user defined immutable class with example?
+36. write a program for jdbc connection using java?
+37. what is difference between statement and prepared statement in java?
+38. how to call procedure using spring?
+39. what is difference between procedure and function?
+40. what is mean by views in database?
+41.difference between httpservlet and generic servlet in java?
